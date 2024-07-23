@@ -1,5 +1,5 @@
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
-use chrono::{DateTime, NaiveDateTime, Utc};
+use chrono::{DateTime, Utc};
 use std::sync::{Arc, Mutex};
 use std::thread;
 
@@ -141,8 +141,9 @@ impl SnowFlakeIdGenerator {
             self.timestamp_shift + self.n_timestamp_bits,
             snowflake_id
         ) + self.epoch;
-        let naive_date_time = NaiveDateTime::from_timestamp_millis(ms as i64).unwrap();
-        DateTime::<Utc>::from_naive_utc_and_offset(naive_date_time, Utc)
+//        let date_time = DateTime::from_timestamp_millis(ms as i64).unwrap();
+//        DateTime::<Utc>::from_utc_and_offset(date_time, Utc)
+        DateTime::<Utc>::from_timestamp_millis(ms as i64).unwrap()
     }
 }
 
